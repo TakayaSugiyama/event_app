@@ -14,12 +14,14 @@
         <div class = "container">
           <div class = "navbar-header">
               <%= link_to "Event App" , root_path, class: "navbar-brand" %>
-              <% if notice %>
-                <p class="notice"><%= notice %></p>
-              <% end %>
           </div>
         </div>
     </header>
+    <% if notice %>
+      <div class = "alert alert-primary">
+          <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
     <div class = "container mt-4">
       <%= yield %>
     </div>
