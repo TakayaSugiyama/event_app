@@ -15,6 +15,9 @@
           <div class = "navbar-header">
               <%= link_to "Event App" , root_path, class: "navbar-brand" %>
           </div>
+          <div class = "ml-auto">
+                <%= link_to "githubでログイン/登録する", user_github_omniauth_authorize_path , class: "nav-link" %>
+          </div>
         </div>
     </header>
     <% if notice %>
