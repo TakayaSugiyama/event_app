@@ -10,6 +10,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class = "navbar navbar-default bg-dark navbar-dark" role = "navigation" >
+        <div class = "container">
+          <div class = "navbar-header">
+              <%= link_to "Event App" , root_path, class: "navbar-brand" %>
+          </div>
+        </div>
+    </header>
+    <div class = "container mt-4">
+      <%= yield %>
+    </div>
   </body>
 </html>
