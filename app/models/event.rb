@@ -8,6 +8,11 @@ class Event < ApplicationRecord
 
   belongs_to :owner, class_name: 'User'
 
+  def created_by?(user)
+    false unless user 
+    self.owner == user
+  end
+
   private 
 
   def start_time_should_be_before_end_time 
