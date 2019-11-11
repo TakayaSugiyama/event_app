@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_11_11_110846) do
     t.string "uid"
     t.string "image"
     t.string "name"
-    t.string "image_name"
     t.string "profile_image"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
