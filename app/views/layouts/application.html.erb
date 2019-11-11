@@ -16,12 +16,16 @@
               <%= link_to "Event App" , root_path, class: "navbar-brand" %>
           </div>
           <div class = "ml-auto">
+            <% if user_signed_in? %>
+                <%= link_to "ログアウト",destroy_user_session_path, class: "nav-link", method: :delete %>
+            <% else %>
                 <%= link_to "githubでログイン/登録する", user_github_omniauth_authorize_path , class: "nav-link" %>
+            <% end  %>
           </div>
         </div>
     </header>
     <% if notice %>
-      <div class = "alert alert-primary">
+      <div class = "alert alert-primary container">
           <p class="notice"><%= notice %></p>
       </div>
     <% end %>
