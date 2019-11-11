@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show]
+  before_action :set_event, only: %i[show  update]
   def new 
     @event = current_user.created_events.build
   end
@@ -15,6 +15,19 @@ class EventsController < ApplicationController
 
   def index 
     @events = Event.where('start_time > ?', Time.zone.now).order(:start_time)
+  end
+
+  def edit
+    @event = current_user.created_events.find(params[:id])
+  end
+
+  def update 
+    @event = current_user.created_events.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: "更新しました"
+    else 
+      render :edit
+    end
   end
 
   private 
