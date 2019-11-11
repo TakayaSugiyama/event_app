@@ -12,6 +12,6 @@ class User < ApplicationRecord
      end
   end
 
-  has_many :created_events, class_name: "Event", foreign_key: :owener_id
+  has_many :created_events, class_name: "Event", foreign_key: :owner_id
 
 end
