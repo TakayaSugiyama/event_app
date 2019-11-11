@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   validates :end_time, presence: true
   validate :start_time_should_be_before_end_time
 
+  belongs_to :owner, class_name: 'User'
+
   private 
 
   def start_time_should_be_before_end_time 
