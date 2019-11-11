@@ -13,6 +13,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def index 
+    @events = Event.where('start_time > ?', Time.zone.now).order(:start_time)
+  end
+
   private 
 
   def event_params 
