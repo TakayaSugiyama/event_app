@@ -22,6 +22,10 @@ class EventsController < ApplicationController
 
   def index 
     @events = Event.page(params[:page]).where('start_time > ?', Time.zone.now).order(:start_time)
+    @q = Event.page(params[:page]).where('start_time > ?', Time.zone.now).ransack(params[:q])
+    if params[:q]
+      @events = @q.result(distinct: true)
+    end
   end
 
   def edit

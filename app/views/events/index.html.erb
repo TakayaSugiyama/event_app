@@ -2,6 +2,21 @@
   <h1>イベント一覧</h1>
 </div>
 
+<div class = "jumbotron mt-4">
+  <h2>検索フォーム</h2>
+  <hr/>
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :name_cont %>
+    <p>
+      <%= sort_link(@q, :start_time) %>
+    </p>
+    <p>
+      <%= f.date_select  :start_time_gteq , strat_year: Date.today.year, end_year: Date.today.year + 1 %> 〜
+    </p>
+    <%= f.submit  %>
+  <% end  %>
+</div>
+
 <div class = "list-group mt-4">
   <% @events.each do |event| %>
     <%= link_to event, class: "list-group-item"  do %>
