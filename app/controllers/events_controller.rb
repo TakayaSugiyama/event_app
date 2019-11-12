@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show  update]
+  PER = 10
+
   def new 
     @event = current_user.created_events.build
   end
@@ -19,7 +21,7 @@ class EventsController < ApplicationController
   end
 
   def index 
-    @events = Event.where('start_time > ?', Time.zone.now).order(:start_time)
+    @events = Event.page(params[:page]).where('start_time > ?', Time.zone.now).order(:start_time)
   end
 
   def edit
