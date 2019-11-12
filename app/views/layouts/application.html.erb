@@ -18,6 +18,7 @@
           <div class = "ml-auto nav">
             <% if user_signed_in? %>
                 <%= link_to "イベントを作成する", new_event_path, class: "nav-link" %>
+                <%= link_to "退会", retire_path, class: "nav-link" %>
                 <%= link_to "ログアウト",destroy_user_session_path, class: "nav-link", method: :delete %>
             <% else %>
                 <%= link_to "githubでログイン/登録する", user_github_omniauth_authorize_path , class: "nav-link" %>

@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :tickets 
   has_many :events, through: :tickets
 
+  has_many :created_events, class_name: "Event",foreign_key: :owner_id
+  before_destroy :check_all_events_finished
+
   def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.email = auth.info.email 
@@ -17,6 +20,19 @@ class User < ApplicationRecord
      end
   end
 
-  has_many :created_events, class_name: "Event", foreign_key: :owner_id
+
+  private 
+
+  def check_all_events_finished
+    now = Time.zone.now
+    if self.created_events.where(':now < end_time', now: now).exists?
+      errors[:base] << '公開中の未終了イベントが存在します。'
+    end
+
+    if self.events.where(':now < end_time', now: now).exists?
+      errors[:base] << '未終了の参加イベントが存在します。'
+    end
+    throw :abort unless errors.blank?
+  end
 
 end
