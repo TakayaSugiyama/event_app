@@ -13,6 +13,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def show 
+    @tickets = @event.tickets.includes(:user).order(:created_at)
+  end
+
   def index 
     @events = Event.where('start_time > ?', Time.zone.now).order(:start_time)
   end
@@ -29,6 +33,7 @@ class EventsController < ApplicationController
       render :edit
     end
   end
+
 
   def destroy 
     @event = current_user.created_events.find(params[:id])
