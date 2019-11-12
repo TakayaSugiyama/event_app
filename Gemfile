@@ -42,6 +42,7 @@ gem 'omniauth-github'
 gem "bootstrap_form", "~> 4.0"
 gem 'kaminari'
 gem 'ransack'
+gem 'carrierwave', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
