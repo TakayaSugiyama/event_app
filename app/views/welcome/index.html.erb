@@ -3,7 +3,9 @@
   <p class="lead">this application is created by Ruby on Rails and based on 「Perfect Ruby on Rails 」</p>
   <hr class="my-4">
   <% unless user_signed_in? %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg btn-block" %>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-lg btn-block" %>
+    <div class = "col-6 mr-auto ml-auto">
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg btn-block" %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-lg btn-block" %>
+    </div>
   <% end %>
 </div>
