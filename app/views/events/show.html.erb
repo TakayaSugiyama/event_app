@@ -11,7 +11,9 @@
         主催者
       </div>
       <div class = "card-body">
-        <% if @event.owner.provider %>
+        <% if @event.owner ==  nil %>
+          <p>退会したユーザー</p>
+        <% elsif @event.owner.provider %>
           <%= link_to  "https://github.com/#{@event.owner.name}" do %>
             <%= image_tag @event.owner.image , height: "150px", width: "150px"%>
             <%= @event.owner.name %>
@@ -59,13 +61,17 @@
         <div class = "card-body">
           <ul class = "list-unstyled">
             <% @tickets.each do |ticket| %>
-              <li>
-                <%= link_to "https://github.com/#{ticket.user.name}" do  %>
-                  <%= image_tag ticket.user.image ,height: "50px", width: "50px" %>
-                  <%= ticket.user.name %>
-                  <p>
-                    <%= ticket.comment %>
-                  </p>
+              <li class = "mt-2 mb-3">
+                <% if ticket.user %>
+                  <%= link_to "https://github.com/#{ticket.user.name}" do  %>
+                    <%= image_tag ticket.user.image ,height: "50px", width: "50px" %>
+                    <%= ticket.user.name %>
+                    <p>
+                      <%= ticket.comment %>
+                    </p>
+                  <% end %>
+                <% else %>
+                   <p>退会したユーザー</p>
                 <% end %>
               </li>
             <% end %>

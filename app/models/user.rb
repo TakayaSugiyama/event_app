@@ -4,11 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:confirmable ,:omniauthable, omniauth_providers: %i[github]
   
-  has_many :tickets 
+  has_many :tickets
   has_many :events, through: :tickets
 
   has_many :created_events, class_name: "Event",foreign_key: :owner_id
   before_destroy :check_all_events_finished
+
+  before_destroy :user_id_to_nil
 
   def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -33,6 +35,10 @@ class User < ApplicationRecord
       errors[:base] << '未終了の参加イベントが存在します。'
     end
     throw :abort unless errors.blank?
+  end
+
+  def user_id_to_nil 
+    self.tickets.update_all(user_id: nil)
   end
 
 end
