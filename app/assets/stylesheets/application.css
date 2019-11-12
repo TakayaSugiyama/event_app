@@ -15,3 +15,11 @@
  *= require rails_bootstrap_forms
  *= require_self
  */
+
+ .header a{
+   color:#fff;
+   opacity:0.5;
+ }
+ .header a:hover {
+   opacity:1.0;
+ }
