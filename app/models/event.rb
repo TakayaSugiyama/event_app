@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :start_time_should_be_before_end_time
+
+  mount_uploader :image, ImageUploader
   
   has_many :tickets, dependent: :destroy
   has_many :participant,source: :user, class_name: "Ticket"

@@ -24,6 +24,10 @@
     <%= f.text_field :place , class: "form-control"%>
   </div>
   <div class = "form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div class = "form-group">
     <%=  f.label :start_time %>
     <div>
       <%= f.datetime_select :start_time , start_year: now.year, end_year: now.year + 1 %>

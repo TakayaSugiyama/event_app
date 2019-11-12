@@ -17,6 +17,7 @@ ja:
         start_time: 開始時刻
         end_time: 終了時刻
         content: 内容
+        image: ロゴ画像
       ticket:
         comment: コメント
   date:
