@@ -3,12 +3,15 @@ $(document).on('ajax:success', "#createTicket", function() {
 });
 
 $(document).on('ajax:error', "#createTicket",function(e){
+  let count = document.getElementsByClassName('alert').length
+  if(count == 0){
   let form = $('.modal-body')
   let div = $('<div class = "alert alert-danger"></div>')
   let ul = $('<ul></ul>')
   ul.append("<li>" + e.detail[0].messages[0] +"</li>")
   div.append(ul)
   form.prepend(div)
+  }
 })
 
 
