@@ -16,11 +16,14 @@
       <div class = "card-body">
         <% if @event.owner ==  nil %>
           <p>退会したユーザー</p>
-        <% elsif @event.owner.provider %>
+        <% elsif @event.owner.github_user? %>
           <%= link_to  "https://github.com/#{@event.owner.name}" do %>
             <%= image_tag @event.owner.image , height: "150px", width: "150px"%>
             <%= @event.owner.name %>
           <%  end  %>
+        <% else %>
+            <%= image_tag @event.owner.profile_image , height: "150px", width: "150px"%>
+            <%= @event.owner.name %>
         <% end  %>
       </div>
     </div>
@@ -66,11 +69,19 @@
             <% @tickets.each do |ticket| %>
               <li class = "mt-2 mb-3">
                 <% if ticket.user %>
-                  <%= link_to "https://github.com/#{ticket.user.name}" do  %>
-                    <%= image_tag ticket.user.image ,height: "50px", width: "50px" %>
+                  <% if ticket.user.github_user? %>
+                    <%= link_to "https://github.com/#{ticket.user.name}" do  %>
+                      <%= image_tag ticket.user.image ,height: "50px", width: "50px" %>
+                      <%= ticket.user.name %>
+                      <p>
+                        <%= ticket.comment %>
+                      </p>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag ticket.user.profile_image, height: "50px", width: "50px" %>
                     <%= ticket.user.name %>
-                    <p>
-                      <%= ticket.comment %>
+                     <p>
+                        <%= ticket.comment %>
                     </p>
                   <% end %>
                 <% else %>

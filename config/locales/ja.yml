@@ -10,6 +10,7 @@ ja:
     models:
       event: イベント
       ticket: チケット
+      user: ユーザー
     attributes: 
       event:
         name: イベント名
@@ -20,6 +21,8 @@ ja:
         image: ロゴ画像
       ticket:
         comment: コメント
+      user: 
+        name: 名前
   date:
     abbr_day_names:
     - 日

@@ -1,3 +1,8 @@
 <div>
   <h1><%= @user.name %> さんのページ</h1>
+  <% if @user.github_user? %>
+    <%= image_tag @user.image %>
+  <% else %>
+    <%= image_tag @user.profile_image %>
+  <% end  %>
 </div>

@@ -12,14 +12,23 @@ class User < ApplicationRecord
 
   before_destroy :user_id_to_nil
 
+
+  validates :name , {presence: true}
+
   def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.email = auth.info.email 
        user.name = auth.info.nickname
        user.password = Devise.friendly_token[0,20]
+       user.profile_image = "default.jpg"
        user.image = auth.info.image
        user.skip_confirmation!
      end
+  end
+
+
+  def github_user?
+    self.provider.nil? ? false : true
   end
 
 
