@@ -1,61 +1,57 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show  update]
+  before_action :set_event, only: %i(show  update)
   PER = 10
 
-  def new 
+  def new
     @event = current_user.created_events.build
   end
 
-  def create 
+  def create
     @event = current_user.created_events.build(event_params)
-    if @event.save 
+    if @event.save
       redirect_to @event, notice: "作成しました"
-    else 
+    else
       render :new
     end
   end
 
-  def show 
+  def show
     @tickets = @event.tickets.includes(:user).order(:created_at)
     @ticket = current_user && current_user.tickets.find_by(event_id: params[:id])
   end
 
-  def index 
+  def index
     @events = Event.page(params[:page]).where('start_time > ?', Time.zone.now).order(:start_time)
     @q = Event.page(params[:page]).where('start_time > ?', Time.zone.now).ransack(params[:q])
-    if params[:q]
-      @events = @q.result(distinct: true)
-    end
+    @events = @q.result(distinct: true) if params[:q]
   end
 
   def edit
     @event = current_user.created_events.find(params[:id])
   end
 
-  def update 
+  def update
     @event = current_user.created_events.find(params[:id])
     if @event.update(event_params)
       redirect_to @event, notice: "更新しました"
-    else 
+    else
       render :edit
     end
   end
 
-
-  def destroy 
+  def destroy
     @event = current_user.created_events.find(params[:id])
     @event.destroy
     redirect_to root_path, notice: "削除しました"
   end
 
-  private 
+  private
 
-  def event_params 
-    params.require(:event).permit(:name,:place,:start_time,:end_time,:image, :content)
+  def event_params
+    params.require(:event).permit(:name, :place, :start_time, :end_time, :image, :content)
   end
 
-  def set_event 
+  def set_event
     @event = Event.find(params[:id])
   end
-
 end

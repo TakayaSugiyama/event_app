@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
-gem "bootstrap_form", "~> 4.0"
+gem 'bootstrap_form', '~> 4.0'
 gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave', '~> 2.0'
@@ -63,11 +63,10 @@ group :development do
   gem 'rails-erd'
   gem 'hirb'
   gem 'hirb-unicode'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'ruby-graphviz'
 end
-
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
