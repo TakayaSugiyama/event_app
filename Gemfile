@@ -42,7 +42,7 @@ gem 'omniauth-github'
 gem 'bootstrap_form', '~> 4.0'
 gem 'kaminari'
 gem 'ransack'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'rubocop', require: false
 
 group :development, :test do
